@@ -6,12 +6,16 @@ public class CharacterManager : MonoBehaviour
 {
     [SerializeField] float speedAmount = 5f;
     [SerializeField] float rotationSpeed = 720f;
-    [SerializeField] Vector2 moveVector;
+    [SerializeField] Vector2 leftJoystickInput;
+    [SerializeField] Vector2 rightJoystickInput;
     float inputMagnitude;
+
+    [SerializeField] FixedJoystick leftJoystick;
+    [SerializeField] FixedJoystick rightJoystick;
 
     void Start()
     {
-        moveVector = new Vector2();
+        leftJoystickInput = new Vector2();
     }
 
 
@@ -23,23 +27,36 @@ public class CharacterManager : MonoBehaviour
     }
     void SetInputValues()
     {
-        moveVector.x = Input.GetAxisRaw("Horizontal");
-        moveVector.y = Input.GetAxisRaw("Vertical");
-        inputMagnitude = Mathf.Clamp01(moveVector.magnitude);
-        moveVector.Normalize();
+        leftJoystickInput.x = leftJoystick.Horizontal;
+        leftJoystickInput.y = leftJoystick.Vertical;
+        inputMagnitude = Mathf.Clamp01(leftJoystickInput.magnitude);
+        leftJoystickInput.Normalize();
+
+
+        rightJoystickInput.x = rightJoystick.Horizontal;
+        rightJoystickInput.y = rightJoystick.Vertical;
+
+        rightJoystickInput.Normalize();
+
     }
     void SetRotation()
     {
-        if (moveVector.magnitude > 0)
+
+        if (rightJoystickInput.magnitude > 0)
         {
-            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveVector);
+            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, rightJoystickInput);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+        }
+        else if (leftJoystickInput.magnitude > 0)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, leftJoystickInput);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
 
     }
     void Move()
     {
-        transform.Translate(moveVector * speedAmount * inputMagnitude * Time.deltaTime, Space.World);
+        transform.Translate(leftJoystickInput * speedAmount * inputMagnitude * Time.deltaTime, Space.World);
     }
 
 

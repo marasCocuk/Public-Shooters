@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &411041886 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
+  m_PrefabInstance: {fileID: 901278133}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45977bbae16431c46a013576a1aea384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &497413158
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,7 +526,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedAmount: 5
   rotationSpeed: 720
-  moveVector: {x: 0, y: 0}
+  leftJoystickInput: {x: 0, y: 0}
+  rightJoystickInput: {x: 0, y: 0}
+  leftJoystick: {fileID: 411041886}
+  rightJoystick: {fileID: 1997218843}
 --- !u!212 &1047754578
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -691,3 +705,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
   m_PrefabInstance: {fileID: 1591361028}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1997218843 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
+  m_PrefabInstance: {fileID: 1591361028}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45977bbae16431c46a013576a1aea384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
